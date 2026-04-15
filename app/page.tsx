@@ -137,7 +137,9 @@ export default function HomePage() {
       </section>
 
       <PhotoSectionHousing />
-      <FormSection />
+      <section id="hero-scroll-target">
+        <FormSection />
+      </section>
 
 
 
