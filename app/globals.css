@@ -1,0 +1,136 @@
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("/fonts/SourceSerif4-VariableFont_opsz,wght.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif 4";
+  src: url("/fonts/SourceSerif4-Italic-VariableFont_opsz,wght.woff2") format("woff2");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Docker One";
+  src: url("/fonts/docker.one.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Docker Two";
+  src: url("/fonts/docker.two.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Dotf1";
+  src: url("/fonts/dotf1.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  color: #272c3a;
+  --bg-tex-small-size: clamp(60px, 18.9vw, 363px);
+  --bg-tex-large-size: clamp(122px, 38vw, 729px);
+  background-image:
+    linear-gradient(
+      180deg,
+      #5676ae 0%,
+      #6caed1 13%,
+      #81b4d0 16%,
+      #b8c5d0 23%,
+      #dad0d0 29%,
+      #e8d4d0 32%,
+      #f9e6ca 52%,
+      #f7dec4 57%,
+      #f3cab5 64%,
+      #eca99c 73%,
+      #eca79b 74%,
+      #dc9d95 77%,
+      #b48388 82%,
+      #745972 90%,
+      #6c5470 91%,
+      #312944 100%
+    );
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: "Source Serif 4", "Times New Roman", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: clip;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/Texture-1.webp"), url("/Texture-1.webp");
+  background-size:
+    var(--bg-tex-large-size) var(--bg-tex-large-size),
+    var(--bg-tex-large-size) var(--bg-tex-large-size);
+  background-position:
+    0 0,
+    calc(var(--bg-tex-large-size) / 2) calc(var(--bg-tex-large-size) / 2);
+  background-repeat: repeat, repeat;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/Texture-2.webp"), url("/Texture-2.webp");
+  background-size:
+    var(--bg-tex-small-size) var(--bg-tex-small-size),
+    var(--bg-tex-small-size) var(--bg-tex-small-size);
+  background-position:
+    0 0,
+    calc(var(--bg-tex-small-size) / 2) calc(var(--bg-tex-small-size) / 2);
+  background-repeat: repeat, repeat;
+  mix-blend-mode: overlay;
+  opacity: 0.33;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

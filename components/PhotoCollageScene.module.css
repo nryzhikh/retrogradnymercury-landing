@@ -1,0 +1,36 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(10px, 1vw, 16px);
+  grid-auto-rows: clamp(130px, 26vw, 190px);
+}
+
+.card {
+  min-width: 0;
+  min-height: 0;
+  grid-column: span var(--item-desktop-col-span, var(--item-col-span, 1));
+  grid-row: span var(--item-desktop-row-span, var(--item-row-span, 1));
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: rgba(241, 236, 221, 0.1);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  /* Main trim behavior. Fine tune each image with objectPosition in the block data. */
+  object-fit: cover;
+}
+
+/* @media (min-width: 900px) {
+  .card {
+    grid-column: span var(--item-desktop-col-span, var(--item-col-span, 1));
+    grid-row: span var(--item-desktop-row-span, var(--item-row-span, 1));
+  }
+} */
