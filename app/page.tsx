@@ -235,10 +235,9 @@ export default function HomePage() {
             Guide.
           </p>
           <span>Что нас ждет на ужине:</span>
-          <ul>
+          <ul style={{ listStyle: "none", padding: 0 }}>
             <li>
               Редкие сорта с грядки
-              <br />
               <br />
               <em>
                 Адриен сам высаживает овощи и травы у местных фермеров. Он лично
@@ -249,7 +248,6 @@ export default function HomePage() {
             <li>
               Утренний улов
               <br />
-              <br />
               <em>
                 За рыбой шеф едет в порт Капбретона к приходу лодок, чтобы
                 выбрать лучшее из ночного улова.
@@ -258,7 +256,6 @@ export default function HomePage() {
             <br />
             <li>
               Атмосфера
-              <br />
               <br />
               <em>
                 Часть блюд подана индивидуально, часть — в стол на общих плато.
@@ -448,6 +445,11 @@ export default function HomePage() {
 
         <br />
         <span>20 июня — Art de vivre*</span>
+        <em>
+          *В этот день мы попытаемся понять, что же такое “искусство жить”, о
+          котором писали Пруст, Руссо, Камю и Вольтер
+        </em>
+
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li>
             <span>18:00</span> Утренняя практика с Моникой
@@ -490,7 +492,7 @@ export default function HomePage() {
 
         <br />
 
-        <span>21 июня — День отъезда*</span>
+        <span>21 июня — День отъезда</span>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li>
             <span>09:00</span> Утренняя медитация с Олей и какао-церемония
@@ -679,7 +681,10 @@ export default function HomePage() {
       <footer className={styles.footer}>
         <SubscribeSection />
 
-        <nav aria-label="Согласие на обработку персональных данных" className={styles.footerLinks}>
+        <nav
+          aria-label="Согласие на обработку персональных данных"
+          className={styles.footerLinks}
+        >
           <a
             href="https://disk.yandex.ru/i/kz1oZ7Grs-Ktgw"
             target="_blank"
