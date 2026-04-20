@@ -679,20 +679,20 @@ export default function HomePage() {
       <footer className={styles.footer}>
         <SubscribeSection />
 
-        <nav aria-label="Правовая информация" className={styles.footerLinks}>
+        <nav aria-label="Согласие на обработку персональных данных" className={styles.footerLinks}>
           <a
-            href="https://docs.google.com/document/d/1FPJ6FnoR6c8xYjg3LGgZ2lMB_Guj2tl0ZA-KS4KW54U/edit?tab=t.0"
+            href="https://disk.yandex.ru/i/kz1oZ7Grs-Ktgw"
             target="_blank"
             rel="noreferrer"
           >
-            Публичная оферта.
+            Согласие на обработку персональных данных
           </a>
           <a
-            href="https://docs.google.com/document/d/1AGLc2Liem0PR6PenVA2jwC-SHSXZX-fCkYu4mtbktW0/edit?tab=t.0"
+            href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
             target="_blank"
             rel="noreferrer"
           >
-            Политика в отношении обработки и защиты персональных данных
+            Согласие на информационную и рекламную рассылку
           </a>
         </nav>
       </footer>

@@ -6,12 +6,9 @@ import styles from "./FormSection.module.css";
 export function FormSection() {
   const formRef = useRef<HTMLFormElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  // True only between a user submit and the iframe load that follows it.
-  // Avoids brittle "skip the first load" logic that races with React mounting
-  // and Strict Mode double-invocation.
-  const pendingSubmitRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -28,20 +25,41 @@ export function FormSection() {
     setIsSuccess(false);
   };
 
-  const handleSubmit = () => {
-    pendingSubmitRef.current = true;
-    setIsSubmitting(true);
-    setIsSuccess(false);
-  };
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const fd = new FormData(form);
 
-  const handleIframeLoad = () => {
-    if (!pendingSubmitRef.current) {
-      return;
+    const payload = {
+      name: fd.get("name"),
+      email: fd.get("email"),
+      phone: fd.get("phone"),
+      about: fd.get("about"),
+      consentData: fd.get("consentData") === "on",
+      consentRules: fd.get("consentRules") === "on",
+    };
+
+    setSubmitError(null);
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        throw new Error(`status_${res.status}`);
+      }
+      form.reset();
+      setIsSuccess(true);
+    } catch (err) {
+      console.error("lead submit failed", err);
+      setSubmitError(
+        "Не удалось отправить заявку. Проверьте соединение и попробуйте ещё раз.",
+      );
+    } finally {
+      setIsSubmitting(false);
     }
-    pendingSubmitRef.current = false;
-    formRef.current?.reset();
-    setIsSubmitting(false);
-    setIsSuccess(true);
   };
 
   type FieldMessages = {
@@ -139,10 +157,8 @@ export function FormSection() {
       <form
         ref={formRef}
         className={styles.form}
-        action="https://docs.google.com/forms/d/e/1FAIpQLSeXXSXYGdv-glTJ-2CCz3UWWuAcG5U8DBIJjYhr1KMWOtVY9g/formResponse"
-        method="POST"
-        target="hidden_google_form_iframe"
         onSubmit={handleSubmit}
+        noValidate={false}
       >
         <div className={styles.frame}>
           <div className={styles.fieldsLayer}>
@@ -152,7 +168,7 @@ export function FormSection() {
               </label>
               <input
                 id="lead-name"
-                name="entry.484328848"
+                name="name"
                 type="text"
                 placeholder="Ваше имя"
                 className={styles.field}
@@ -168,7 +184,7 @@ export function FormSection() {
               </label>
               <input
                 id="lead-email"
-                name="entry.632980934"
+                name="email"
                 type="email"
                 placeholder="example@host.com"
                 className={styles.field}
@@ -186,7 +202,7 @@ export function FormSection() {
               </label>
               <input
                 id="lead-phone"
-                name="entry.1194418700"
+                name="phone"
                 type="tel"
                 inputMode="tel"
                 autoComplete="tel"
@@ -208,7 +224,7 @@ export function FormSection() {
               </label>
               <textarea
                 id="lead-about"
-                name="entry.1640079846"
+                name="about"
                 placeholder="Введите текст"
                 className={styles.aboutField}
                 onInvalid={handleAboutInvalid}
@@ -236,6 +252,11 @@ export function FormSection() {
                   className={styles.ctaImage}
                 />
               </button>
+              {submitError ? (
+                <p role="alert" className={styles.submitError}>
+                  {submitError}
+                </p>
+              ) : null}
             </div>
           </div>
         </div>
@@ -274,12 +295,6 @@ export function FormSection() {
           </div>
         </div>
       </form>
-      <iframe
-        name="hidden_google_form_iframe"
-        title="Google Form submit target"
-        className={styles.hiddenIframe}
-        onLoad={handleIframeLoad}
-      />
 
       <dialog
         ref={dialogRef}

@@ -1,43 +1,43 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import styles from "./SubscribeSection.module.css";
-
-// TODO: replace with the real Google Form `formResponse` URL.
-// Open the form → preview → submit test entry → copy the URL ending in `/formResponse`.
-const GOOGLE_FORM_ACTION =
-  "https://docs.google.com/forms/d/e/1FAIpQLSekpsScE5_ubvO7RE-STT5OlpCo0XMW9AwYkwSush_-VZ-H0Q/formResponse";
-
-
-// TODO: replace with the `entry.<id>` name of the email field on that form.
-// Inspect the email input in the form preview, or use "Get pre-filled link".
-const EMAIL_ENTRY_NAME = "entry.1827305086";
-
-const IFRAME_NAME = "hidden_subscribe_iframe";
 
 export function SubscribeSection() {
   const formRef = useRef<HTMLFormElement>(null);
-  // True only between a user submit and the iframe load that follows it.
-  // Avoids brittle "skip the first load" logic that races with React mounting
-  // and Strict Mode double-invocation.
-  const pendingSubmitRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = () => {
-    pendingSubmitRef.current = true;
-    setIsSubmitting(true);
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const fd = new FormData(form);
+    const email = fd.get("email");
+
+    setSubmitError(null);
     setIsSuccess(false);
-  };
+    setIsSubmitting(true);
 
-  const handleIframeLoad = () => {
-    if (!pendingSubmitRef.current) {
-      return;
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) {
+        throw new Error(`status_${res.status}`);
+      }
+      form.reset();
+      setIsSuccess(true);
+    } catch (err) {
+      console.error("subscribe failed", err);
+      setSubmitError(
+        "Не удалось оформить подписку. Проверьте адрес и попробуйте ещё раз.",
+      );
+    } finally {
+      setIsSubmitting(false);
     }
-    pendingSubmitRef.current = false;
-    formRef.current?.reset();
-    setIsSubmitting(false);
-    setIsSuccess(true);
   };
 
   return (
@@ -52,9 +52,6 @@ export function SubscribeSection() {
       <form
         ref={formRef}
         className={styles.form}
-        action={GOOGLE_FORM_ACTION}
-        method="POST"
-        target={IFRAME_NAME}
         onSubmit={handleSubmit}
         noValidate={false}
       >
@@ -63,7 +60,7 @@ export function SubscribeSection() {
         </label>
         <input
           id="subscribe-email"
-          name={EMAIL_ENTRY_NAME}
+          name="email"
           type="email"
           inputMode="email"
           autoComplete="email"
@@ -88,19 +85,15 @@ export function SubscribeSection() {
 
         <div className={styles.messageSlot} aria-live="polite" role="status">
           {isSuccess ? (
-            <p className={styles.successMessage}>
-              Спасибо! Вы подписаны.
+            <p className={styles.successMessage}>Спасибо! Вы подписаны.</p>
+          ) : null}
+          {submitError ? (
+            <p className={styles.errorMessage} role="alert">
+              {submitError}
             </p>
           ) : null}
         </div>
       </form>
-
-      <iframe
-        name={IFRAME_NAME}
-        title="Google Form subscribe target"
-        className={styles.hiddenIframe}
-        onLoad={handleIframeLoad}
-      />
     </section>
   );
 }

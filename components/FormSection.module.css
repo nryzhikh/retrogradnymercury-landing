@@ -145,8 +145,13 @@
   text-align: left;
 }
 
-.hiddenIframe {
-  display: none;
+.submitError {
+  margin-top: 12px;
+  font-family: "Source Serif 4";
+  font-size: 14px;
+  line-height: 1.4;
+  color: #a4313f;
+  text-align: center;
 }
 
 /* ---------- Success popover (placeholder styles, to be themed later) ---------- */
