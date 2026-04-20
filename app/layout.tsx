@@ -24,15 +24,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    url: "/images/retreat.jpg",
+    url: "/",
     siteName: title,
     title,
     description,
+    images: [
+      {
+        url: "/images/retreat.jpg",
+        width: 1921,
+        height: 1274,
+        alt: "Ретроградный ритрит · Меркурий в Биаррице · 18–21 июня 2026",
+        type: "image/jpeg",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: ["/images/retreat.jpg"],
   },
 };
 
