@@ -99,7 +99,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("/Texture-1.webp"), url("/Texture-1.webp");
+  /* background-image: url("/Texture-1.webp"), url("/Texture-1.webp"); */
   background-size:
     var(--bg-tex-large-size) var(--bg-tex-large-size),
     var(--bg-tex-large-size) var(--bg-tex-large-size);
@@ -116,7 +116,7 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("/Texture-2.webp"), url("/Texture-2.webp");
+  /* background-image: url("/Texture-2.webp"), url("/Texture-2.webp"); */
   background-size:
     var(--bg-tex-small-size) var(--bg-tex-small-size),
     var(--bg-tex-small-size) var(--bg-tex-small-size);

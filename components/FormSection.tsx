@@ -6,7 +6,10 @@ import styles from "./FormSection.module.css";
 export function FormSection() {
   const formRef = useRef<HTMLFormElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
-  const hasLoadedIframeRef = useRef(false);
+  // True only between a user submit and the iframe load that follows it.
+  // Avoids brittle "skip the first load" logic that races with React mounting
+  // and Strict Mode double-invocation.
+  const pendingSubmitRef = useRef(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -26,21 +29,16 @@ export function FormSection() {
   };
 
   const handleSubmit = () => {
+    pendingSubmitRef.current = true;
     setIsSubmitting(true);
     setIsSuccess(false);
   };
 
   const handleIframeLoad = () => {
-    // Ignore first load event from the initial empty iframe render.
-    if (!hasLoadedIframeRef.current) {
-      hasLoadedIframeRef.current = true;
+    if (!pendingSubmitRef.current) {
       return;
     }
-
-    if (!isSubmitting) {
-      return;
-    }
-
+    pendingSubmitRef.current = false;
     formRef.current?.reset();
     setIsSubmitting(false);
     setIsSuccess(true);
