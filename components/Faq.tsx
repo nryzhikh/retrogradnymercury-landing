@@ -25,7 +25,7 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
               aria-expanded={isOpen}
             >
               <img
-                src={`/images/questions-card-${index + 1}.png`}
+                src={`/images/questions-card-1.png`}
                 alt=""
                 aria-hidden="true"
                 className={styles.card}

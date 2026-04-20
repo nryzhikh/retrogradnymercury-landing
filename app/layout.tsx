@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ретроградный Меркурий — Персональный астрологический прогноз на 2026 год",
+  title: "Ретроградный ритрит Биарриц 2026",
   description:
-    "Recovered Next.js scaffold for the Retrogradny Mercury landing page.",
+    "Ретроградный ритрит Биарриц 2026",
   icons: {
     icon: [
       { url: "/favicon.ico", type: "image/x-icon" },

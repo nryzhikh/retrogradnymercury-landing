@@ -1,0 +1,229 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(32px, 5vw, 72px) 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+}
+
+.frame {
+  width: min(96vw, 900px);
+  margin: 0 auto;
+  background-image: url("/images/форма 1.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: clamp(40px, 4vw, 64px);
+  box-sizing: border-box;
+}
+
+/* Move this block to place the full form over the background art. */
+.fieldsLayer {
+  position: relative;
+  inset: auto;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4vw;
+  padding-inline: clamp(20px, 3vw, 36px);
+  padding-block: 6vw;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.field {
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+  border: 1px solid rgba(39, 44, 58, 0.28);
+  background: #282526;
+  color: #fff;
+  caret-color: #fff;
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1.2;
+  padding: clamp(10px, 1.1vw, 16px) clamp(12px, 1.2vw, 18px);
+  outline: none;
+  font-family: "Source Serif 4";
+  font-style: italic;
+}
+
+.fieldGroup {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.label {
+  font-size: clamp(16px, 2.4vw, 24px);
+  line-height: 1.2;
+  font-weight: 600;
+  color: #272c3a;
+}
+
+.aboutField {
+  composes: field;
+  min-height: clamp(90px, 10vw, 140px);
+  max-height: 34vh;
+  resize: vertical;
+}
+
+.ctaLink {
+  width: 100%;
+  display: block;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  align-self: stretch;
+}
+
+.ctaLink:disabled {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+.ctaImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}
+
+.consentGroup {
+  width: min(96vw, 900px);
+  padding-inline: clamp(20px, 3vw, 36px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.consentRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-center;
+  gap: 10px;
+  width: 100%;
+  padding-inline: clamp(20px, 3vw, 36px);
+
+}
+
+.consentCheckbox {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+}
+
+.consentLabel {
+  font-size: clamp(16px, 2.4vw, 24px);
+  line-height: 1.3;
+  /* color: #272c3a; */
+  color: #fff;
+  font-family: "Source Serif 4";
+  font-style: italic;
+  text-align: left;
+}
+
+.aboutCopy {
+  font-size: clamp(16px, 2.4vw, 24px);
+  line-height: 1.2;
+  font-family: "Source Serif 4";
+  font-style: italic;
+  color: #272c3a;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.hiddenIframe {
+  display: none;
+}
+
+/* ---------- Success popover (placeholder styles, to be themed later) ---------- */
+
+.successDialog {
+  width: min(92vw, 1100px);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  margin: auto;
+}
+
+.successDialog::backdrop {
+  background: linear-gradient(
+    180deg,
+    #EADAE7 0%,
+    #E4DFE9 33%,
+    #CDDCE8 54%,
+    #81B4D0 100%
+  );
+  backdrop-filter: blur(4px);
+}
+
+.successDialogBody {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 20px);
+  padding: clamp(28px, 4vw, 48px);
+  /* Fallback for browsers that drop background-image. */
+  /* background-color: #f1ecdd; */
+  /* Stops are evenly spaced — swap %s for banded "stepped" look. */
+  /* background-image: linear-gradient(
+    180deg,
+    #f7f0dc 0%,
+    #f1ecdd 45%,
+    #e6d7b4 100%
+  ); */
+  color: #272c3a;
+  /* border: 1px solid rgba(39, 44, 58, 0.2); */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.successDialogTitle {
+  margin: 0;
+  font-family: "Source Serif 4", serif;
+  font-weight: 700;
+  font-size: clamp(22px, 3vw, 32px);
+  line-height: 1.2;
+}
+
+.successDialogText {
+  margin: 0;
+  font-family: "Source Serif 4", serif;
+  /* font-style: italic; */
+  font-size: clamp(18px, 2.4vw, 24px);
+  line-height: 1.4;
+}
+
+.successDialogClose {
+  margin-top: clamp(8px, 1.2vw, 16px);
+  padding: clamp(10px, 1.1vw, 14px) clamp(20px, 2vw, 28px);
+  border: 1px solid #272c3a;
+  background: #272c3a;
+  color: #f1ecdd;
+  font-family: "Source Serif 4", serif;
+  font-size: clamp(14px, 1.1vw, 18px);
+  line-height: 1;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.successDialogClose:hover,
+.successDialogClose:focus-visible {
+  opacity: 0.85;
+  outline: none;
+}
