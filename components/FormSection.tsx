@@ -293,21 +293,7 @@ export function FormSection() {
             </label>
           </div>
 
-          {/* <div className={styles.consentRow}>
-            <input
-              id="lead-consent-rules"
-              name="consentRules"
-              type="checkbox"
-              className={styles.consentCheckbox}
-              title="Пожалуйста, подтвердите, что вы ознакомились с условиями."
-              onInvalid={handleConsentInvalid}
-              onChange={clearValidity}
-              required
-            />
-            <label htmlFor="lead-consent-rules" className={styles.consentLabel}>
-              Я ознакомился(ась) с условиями участия и согласен(а) с ними.
-            </label>
-          </div> */}
+
         </div>
       </form>
 
