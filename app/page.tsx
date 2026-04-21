@@ -455,7 +455,7 @@ export default function HomePage() {
 
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li>
-            <span>18:00</span> Утренняя практика с Моникой
+            <span>8:30</span> Утренняя практика с Моникой
           </li>
           <li>
             <span>10:00</span> Завтрак в саду
