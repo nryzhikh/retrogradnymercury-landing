@@ -464,7 +464,7 @@ export default function HomePage() {
             <span>11:00 - 16:30</span> Экскурсия по Биаррицу*
           </li>
           <li>
-            <span>20:00</span> Обед в городе
+            <span>14:00</span> Обед в городе
           </li>
           <li>
             <span>20:00</span> Тот самый ужин
