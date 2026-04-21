@@ -5,7 +5,7 @@ const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   "https://retrogradnymercury-landing-ihif.vercel.app";
 
-const title = "Ретроградный ритрит Биарриц 2026";
+const title = "Ретроградный ретрит";
 const description = "18 — 21 июня 2026 · Меркурий в Биаррице";
 
 export const metadata: Metadata = {
