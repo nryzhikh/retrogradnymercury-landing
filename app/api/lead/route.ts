@@ -28,6 +28,52 @@ const asString = (value: unknown, max = 500): string => {
 
 const asBool = (value: unknown): boolean => value === true || value === "on" || value === "true";
 
+const MAX_ATTEMPTS = 3;
+const BASE_DELAY_MS = 300;
+const REQUEST_TIMEOUT_MS = 8000;
+
+const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
+
+const isRetriableStatus = (status: number): boolean =>
+  status === 408 || status === 425 || status === 429 || (status >= 500 && status < 600);
+
+async function postWithRetry(url: string, payload: unknown): Promise<Response> {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        cache: "no-store",
+        signal: controller.signal,
+      });
+
+      if (res.ok || !isRetriableStatus(res.status) || attempt === MAX_ATTEMPTS) {
+        return res;
+      }
+
+      console.warn("[lead] retriable upstream status", { attempt, status: res.status });
+    } catch (err) {
+      lastError = err;
+      console.warn("[lead] fetch attempt failed", { attempt, err });
+      if (attempt === MAX_ATTEMPTS) throw err;
+    } finally {
+      clearTimeout(timeout);
+    }
+
+    const backoff = BASE_DELAY_MS * 2 ** (attempt - 1);
+    const jitter = Math.floor(Math.random() * BASE_DELAY_MS);
+    await sleep(backoff + jitter);
+  }
+
+  throw lastError ?? new Error("lead_retry_exhausted");
+}
+
 export async function POST(request: Request) {
   let body: LeadPayload;
   try {
@@ -57,12 +103,7 @@ export async function POST(request: Request) {
   };
 
   try {
-    const res = await fetch(YANDEX_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(yandexPayload),
-      cache: "no-store",
-    });
+    const res = await postWithRetry(YANDEX_ENDPOINT, yandexPayload);
 
     if (!res.ok) {
       const detail = await res.text();
