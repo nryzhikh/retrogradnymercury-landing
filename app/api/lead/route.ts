@@ -9,7 +9,7 @@ const FIELD = {
   phone: "answer_short_text_9008975942791996",
   about: "answer_short_text_9008975942806184",
   consentData: "answer_boolean_9008975942820538",
-  // consentRules: "answer_boolean_9008975942845082",
+  consentAds: "answer_boolean_9008976023366224",
 } as const;
 
 type LeadPayload = {
@@ -18,7 +18,7 @@ type LeadPayload = {
   phone?: unknown;
   about?: unknown;
   consentData?: unknown;
-  consentRules?: unknown;
+  consentAds?: unknown;
 };
 
 const asString = (value: unknown, max = 500): string => {
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
   const phone = asString(body.phone, 40);
   const about = asString(body.about, 2000);
   const consentData = asBool(body.consentData);
-  // const consentRules = asBool(body.consentRules);
+  const consentAds = asBool(body.consentAds);
 
   if (!name || !email || !phone || !about || !consentData) {
     return NextResponse.json({ error: "missing_fields" }, { status: 400 });
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     [FIELD.phone]: phone,
     [FIELD.about]: about,
     [FIELD.consentData]: consentData,
-    // [FIELD.consentRules]: consentRules,
+    [FIELD.consentAds]: consentAds,
   };
 
   try {

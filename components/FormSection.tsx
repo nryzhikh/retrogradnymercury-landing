@@ -282,7 +282,21 @@ export function FormSection() {
               >
                 обработку персональных данных
               </a>
-              {" "}и{" "}
+            </label>
+          </div>
+          <div className={styles.consentRow}>
+            <input
+              id="lead-consent-ads"
+              name="consentAds"
+              type="checkbox"
+              className={styles.consentCheckbox}
+              title="Пожалуйста, подтвердите согласие на обработку персональных данных."
+              onInvalid={handleConsentInvalid}
+              onChange={clearValidity}
+              required
+            />
+            <label htmlFor="lead-consent-ads" className={styles.consentLabel}>
+              Я согласен(а) на{" "}
               <a
                 href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
                 target="_blank"
