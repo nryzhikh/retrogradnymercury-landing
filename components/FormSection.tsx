@@ -280,7 +280,15 @@ export function FormSection() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                обработку персональных данных.
+                обработку персональных данных
+              </a>
+              {" "}и{" "}
+              <a
+                href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                получение рекламной рассылки
               </a>
             </label>
           </div>

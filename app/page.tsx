@@ -36,7 +36,7 @@ const photosSet2: Tile[] = [
   { src: "/images/imgset-2/glass.png", alt: "glass", col: 2, row: 4 },
 
   { src: "/images/imgset-2/hero.png", alt: "hero", col: 4, row: 4 },
-  { src: "/images/imgset-2/surf.png", alt: "surf", col: 2, row: 8 },
+  { src: "/images/imgset-2/surf.png", alt: "surf", col: 2, row: 8, hideOnMobile: true },
 
   { src: "/images/imgset-2/sea.png", alt: "sea", col: 2, row: 4 },
   { src: "/images/imgset-2/dog.png", alt: "dog", col: 4, row: 4 },

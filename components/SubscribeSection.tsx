@@ -85,7 +85,7 @@ export function SubscribeSection() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              получение информации о событиях и рекламных предложениях.
+            получение рекламной рассылки
             </a>
           </label>
         </div>
