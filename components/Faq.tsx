@@ -5,7 +5,7 @@ import styles from "./Faq.module.css";
 
 type FaqItem = {
   question: string;
-  answer: string;
+  answer: string | string[];
 };
 
 export function Faq({ items }: { items: readonly FaqItem[] }) {

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CookieConsentProvider } from "@/contexts/CookieConsentContext";
+import CookieBanner from "@/components/CookieBanner/CookieBanner";
+import YandexMetrika from "./YandexMetrika";
+import { Suspense } from "react";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -53,7 +57,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        <CookieConsentProvider>
+          <Suspense fallback={null}>
+            <YandexMetrika />
+          </Suspense>
+          <CookieBanner />
+          {children}
+        </CookieConsentProvider>
+      </body>
     </html>
   );
 }
