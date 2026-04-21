@@ -683,22 +683,15 @@ export default function HomePage() {
         <SubscribeSection />
 
         <nav
-          aria-label="Согласие на обработку персональных данных"
+          aria-label="Политика в отношении обработки и защиты персональных данных"
           className={styles.footerLinks}
         >
           <a
-            href="https://disk.yandex.ru/i/kz1oZ7Grs-Ktgw"
+            href="https://docs.google.com/document/d/1AGLc2Liem0PR6PenVA2jwC-SHSXZX-fCkYu4mtbktW0/edit?usp=sharing"
             target="_blank"
             rel="noreferrer"
           >
-            Согласие на обработку персональных данных
-          </a>
-          <a
-            href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Согласие на информационную и рекламную рассылку
+            Политика в отношении обработки и защиты персональных данных
           </a>
         </nav>
       </footer>

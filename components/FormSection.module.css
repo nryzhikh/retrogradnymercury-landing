@@ -134,6 +134,17 @@
   text-align: left;
 }
 
+.consentLabel a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.consentLabel a:hover,
+.consentLabel a:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
 .aboutCopy {
   font-size: clamp(16px, 2.4vw, 24px);
   line-height: 1.2;

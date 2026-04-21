@@ -14,6 +14,7 @@ export function SubscribeSection() {
     const form = event.currentTarget;
     const fd = new FormData(form);
     const email = fd.get("email");
+    const consent_ads = fd.get("consent_ads") === "on";
 
     setSubmitError(null);
     setIsSuccess(false);
@@ -23,7 +24,7 @@ export function SubscribeSection() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, consent_ads }),
       });
       if (!res.ok) {
         throw new Error(`status_${res.status}`);
@@ -41,10 +42,7 @@ export function SubscribeSection() {
   };
 
   return (
-    <section
-      aria-labelledby="subscribe-heading"
-      className={styles.subscribe}
-    >
+    <section aria-labelledby="subscribe-heading" className={styles.subscribe}>
       <h2 id="subscribe-heading" className={styles.heading}>
         Узнавайте первыми о наших событиях
       </h2>
@@ -68,6 +66,29 @@ export function SubscribeSection() {
           className={styles.input}
           required
         />
+
+        <div className={styles.consentRow}>
+          <input
+            id="lead-consent_ads"
+            name="consent_ads"
+            type="checkbox"
+            className={styles.consentCheckbox}
+            title="Пожалуйста, подтвердите согласие на обработку персональных данных."
+            // onInvalid={handleConsentInvalid}
+            // onChange={clearValidity}
+            required
+          />
+          <label htmlFor="lead-consent-data" className={styles.consentLabel}>
+            Я согласен(а) на{" "}
+            <a
+              href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              получение информации о событиях и рекламных предложениях.
+            </a>
+          </label>
+        </div>
 
         <button
           type="submit"
@@ -93,6 +114,7 @@ export function SubscribeSection() {
             </p>
           ) : null}
         </div>
+
       </form>
     </section>
   );

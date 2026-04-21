@@ -98,3 +98,42 @@
 .errorMessage {
   color: #ff9b8a;
 }
+
+
+.consentRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-center;
+  gap: 10px;
+  width: 100%;
+  padding-inline: clamp(20px, 3vw, 36px);
+
+}
+
+.consentCheckbox {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  flex-shrink: 0;
+}
+
+.consentLabel {
+  font-size: clamp(16px, 2.4vw, 24px);
+  line-height: 1.3;
+  /* color: #272c3a; */
+  color: #fff;
+  font-family: "Source Serif 4";
+  font-style: italic;
+  text-align: left;
+}
+
+.consentLabel a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.consentLabel a:hover,
+.consentLabel a:focus-visible {
+  text-decoration-thickness: 2px;
+}

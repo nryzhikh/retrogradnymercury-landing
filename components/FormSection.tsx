@@ -274,11 +274,18 @@ export function FormSection() {
               required
             />
             <label htmlFor="lead-consent-data" className={styles.consentLabel}>
-              Я согласен(а) на обработку персональных данных.
+              Я согласен(а) на{" "}
+              <a
+                href="https://disk.yandex.ru/i/kz1oZ7Grs-Ktgw"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                обработку персональных данных.
+              </a>
             </label>
           </div>
 
-          <div className={styles.consentRow}>
+          {/* <div className={styles.consentRow}>
             <input
               id="lead-consent-rules"
               name="consentRules"
@@ -292,7 +299,7 @@ export function FormSection() {
             <label htmlFor="lead-consent-rules" className={styles.consentLabel}>
               Я ознакомился(ась) с условиями участия и согласен(а) с ними.
             </label>
-          </div>
+          </div> */}
         </div>
       </form>
 
@@ -307,7 +314,6 @@ export function FormSection() {
             Спасибо! Ваша заявка отправлена.
           </h2> */}
           <p className={styles.successDialogText}>
-            {/* TODO: replace with final copy */}
             Спасибо, ваша анкета у нас 🤍 Мы получили ваши данные и уже начали
             планировать детали нашей встречи в Биаррице. Нам нужно немного
             времени, чтобы свериться с картой комнат и подготовить для вас
@@ -325,7 +331,6 @@ export function FormSection() {
             onClick={closeSuccessDialog}
             aria-label="Закрыть"
           >
-            {/* TODO: replace with final CTA copy */}
             Хорошо
           </button>
         </div>
