@@ -15,6 +15,8 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
     <div className={styles.list}>
       {items.map((item, index) => {
         const isOpen = openIndex === index;
+        const paragraphs = Array.isArray(item.answer) ? item.answer : [item.answer];
+
 
         return (
           <article className={styles.item} key={item.question}>
@@ -40,7 +42,9 @@ export function Faq({ items }: { items: readonly FaqItem[] }) {
             </button>
             {isOpen ? (
               <div className={styles.answer}>
-                <p>{item.answer}</p>
+                {paragraphs.map((answer, index) => (
+                  <p key={index}>{answer}</p>
+                ))}
               </div>
             ) : null}
           </article>
