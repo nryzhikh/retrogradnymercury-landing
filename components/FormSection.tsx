@@ -274,14 +274,17 @@ export function FormSection() {
               required
             />
             <label htmlFor="lead-consent-data" className={styles.consentLabel}>
+              <div>
               Я согласен(а) на{" "}
               <a
                 href="https://disk.yandex.ru/i/ASuW8x_Z5FDLrw"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(event) => event.stopPropagation()}
               >
                 обработку персональных данных
               </a>
+              </div>
             </label>
           </div>
           <div className={styles.consentRow}>
@@ -293,17 +296,19 @@ export function FormSection() {
               title="Пожалуйста, подтвердите согласие на получение рекламной рассылки"
               onInvalid={handleConsentInvalid}
               onChange={clearValidity}
-              required
             />
             <label htmlFor="lead-consent-ads" className={styles.consentLabel}>
+              <div>
               Я согласен(а) на{" "}
               <a
                 href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(event) => event.stopPropagation()}
               >
                 получение рекламной рассылки
               </a>
+              </div>
             </label>
           </div>
 

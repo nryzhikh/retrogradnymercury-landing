@@ -14,7 +14,8 @@ export function SubscribeSection() {
     const form = event.currentTarget;
     const fd = new FormData(form);
     const email = fd.get("email");
-    const consent_ads = fd.get("consent_ads") === "on";
+    const consent_ads = fd.get("consentAds") === "on";
+    const consent_data = fd.get("consentData") === "on";
 
     setSubmitError(null);
     setIsSuccess(false);
@@ -79,14 +80,17 @@ export function SubscribeSection() {
             required
           />
           <label htmlFor="subscribe-consent-data" className={styles.consentLabel}>
+            <div>
             Я согласен(а) на{" "}
             <a
               href="https://disk.yandex.ru/i/ASuW8x_Z5FDLrw"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(event) => event.stopPropagation()}
             >
               обработку персональных данных
             </a>
+            </div>
           </label>
         </div>
 
@@ -99,17 +103,19 @@ export function SubscribeSection() {
             title="Пожалуйста, подтвердите согласие на получение рекламной рассылки"
             // onInvalid={handleConsentInvalid}
             // onChange={clearValidity}
-            required
           />
           <label htmlFor="subscribe-consent-ads" className={styles.consentLabel}>
+            <div>
             Я согласен(а) на{" "}
             <a
               href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(event) => event.stopPropagation()}
             >
               получение рекламной рассылки
             </a>
+            </div>
           </label>
         </div>
 
