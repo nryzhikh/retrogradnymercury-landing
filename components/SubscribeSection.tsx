@@ -81,7 +81,7 @@ export function SubscribeSection() {
           <label htmlFor="subscribe-consent-data" className={styles.consentLabel}>
             Я согласен(а) на{" "}
             <a
-              href="https://disk.yandex.ru/i/kz1oZ7Grs-Ktgw"
+              href="https://disk.yandex.ru/i/ASuW8x_Z5FDLrw"
               target="_blank"
               rel="noopener noreferrer"
             >

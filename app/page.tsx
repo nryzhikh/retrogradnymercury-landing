@@ -684,7 +684,7 @@ export default function HomePage() {
       <footer className={styles.footer}>
         <SubscribeSection />
 
-        {/* <nav
+        <nav
           aria-label="Политика в отношении обработки и защиты персональных данных"
           className={styles.footerLinks}
         >
@@ -695,7 +695,7 @@ export default function HomePage() {
           >
             Политика в отношении обработки и защиты персональных данных
           </a>
-        </nav> */}
+        </nav>
       </footer>
     </main>
   );
