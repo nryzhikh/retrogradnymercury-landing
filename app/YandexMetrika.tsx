@@ -15,10 +15,15 @@ export default function YandexMetrika() {
 
   // Отслеживание изменений страницы (SPA навигация)
   useEffect(() => {
-    if (consentStatus === 'accepted') {
-      const url = pathname + (searchParams ? `?${searchParams.toString()}` : '');
-      trackPageView(YANDEX_METRIKA_ID, url);
-    }
+    if (consentStatus !== 'accepted') return;
+
+    const query = searchParams?.toString();
+    const fullUrl = new URL(
+      pathname + (query ? `?${query}` : ''),
+      window.location.origin,
+    ).toString();
+
+    trackPageView(YANDEX_METRIKA_ID, fullUrl);
   }, [pathname, searchParams, consentStatus]);
 
   // Не загружать скрипт если не принято согласие
@@ -43,7 +48,8 @@ export default function YandexMetrika() {
             webvisor: true,
             clickmap: true,
             accurateTrackBounce: true,
-            trackLinks: true
+            trackLinks: true,
+            triggerEvent: false
           });
         `,
       }}

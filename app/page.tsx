@@ -44,7 +44,7 @@ const photosSet2: Tile[] = [
 
 const photosSet3: Tile[] = [
   { src: "/images/imgset-3/sea.png", alt: "sea", col: 4, row: 8 },
-  { src: "/images/imgset-3/sand.png", alt: "sand", col: 4, row: 8 },
+  { src: "/images/imgset-3/sand.png", alt: "sand", col: 4, row: 8, hideOnMobile: true  },
 ];
 
 const faqs = [
