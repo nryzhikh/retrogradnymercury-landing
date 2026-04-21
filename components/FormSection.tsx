@@ -36,7 +36,7 @@ export function FormSection() {
       phone: fd.get("phone"),
       about: fd.get("about"),
       consentData: fd.get("consentData") === "on",
-      // consentRules: fd.get("consentRules") === "on",
+      consentAds: fd.get("consentAds") === "on",
     };
 
     setSubmitError(null);
