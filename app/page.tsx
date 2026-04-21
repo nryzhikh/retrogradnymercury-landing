@@ -689,7 +689,7 @@ export default function HomePage() {
           className={styles.footerLinks}
         >
           <a
-            href="https://docs.google.com/document/d/1AGLc2Liem0PR6PenVA2jwC-SHSXZX-fCkYu4mtbktW0/edit?usp=sharing"
+            href="https://disk.yandex.ru/d/_MfPDy3Fh3ljWw"
             target="_blank"
             rel="noreferrer"
           >
