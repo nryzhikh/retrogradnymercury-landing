@@ -102,11 +102,12 @@
 
 .consentRow {
   display: flex;
-  align-items: center;
-  justify-content: flex-center;
+  align-items: stretch;
+  justify-content: center;
   gap: 10px;
   width: 100%;
   padding-inline: clamp(20px, 3vw, 36px);
+  
 
 }
 
@@ -118,13 +119,13 @@
 }
 
 .consentLabel {
-  font-size: clamp(16px, 2.4vw, 24px);
+  font-size: clamp(14px, 1.8vw, 18px);
   line-height: 1.3;
   /* color: #272c3a; */
   color: #fff;
   font-family: "Source Serif 4";
   font-style: italic;
-  text-align: left;
+  text-align: center;
 }
 
 .consentLabel a {
