@@ -268,7 +268,7 @@ export function FormSection() {
               name="consentData"
               type="checkbox"
               className={styles.consentCheckbox}
-              title="Пожалуйста, подтвердите согласие на обработку персональных данных."
+              title="Пожалуйста, подтвердите согласие на обработку персональных данных"
               onInvalid={handleConsentInvalid}
               onChange={clearValidity}
               required
@@ -290,7 +290,7 @@ export function FormSection() {
               name="consentAds"
               type="checkbox"
               className={styles.consentCheckbox}
-              title="Пожалуйста, подтвердите согласие на обработку персональных данных."
+              title="Пожалуйста, подтвердите согласие на получение рекламной рассылки"
               onInvalid={handleConsentInvalid}
               onChange={clearValidity}
               required

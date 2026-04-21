@@ -103,7 +103,7 @@
 .consentRow {
   display: flex;
   align-items: stretch;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
   width: 100%;
   padding-inline: clamp(20px, 3vw, 36px);

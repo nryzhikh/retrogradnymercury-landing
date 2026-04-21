@@ -66,26 +66,49 @@ export function SubscribeSection() {
           className={styles.input}
           required
         />
-
+      
         <div className={styles.consentRow}>
           <input
-            id="lead-consent_ads"
-            name="consent_ads"
+            id="subscribe-consent-data"
+            name="consentData"
             type="checkbox"
             className={styles.consentCheckbox}
-            title="Пожалуйста, подтвердите согласие на обработку персональных данных."
+            title="Пожалуйста, подтвердите согласие на обработку персональных данных"
             // onInvalid={handleConsentInvalid}
             // onChange={clearValidity}
             required
           />
-          <label htmlFor="lead-consent-data" className={styles.consentLabel}>
+          <label htmlFor="subscribe-consent-data" className={styles.consentLabel}>
+            Я согласен(а) на{" "}
+            <a
+              href="https://disk.yandex.ru/i/kz1oZ7Grs-Ktgw"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              обработку персональных данных
+            </a>
+          </label>
+        </div>
+
+        <div className={styles.consentRow}>
+          <input
+            id="subscribe-consent-ads"
+            name="consentAds"
+            type="checkbox"
+            className={styles.consentCheckbox}
+            title="Пожалуйста, подтвердите согласие на получение рекламной рассылки"
+            // onInvalid={handleConsentInvalid}
+            // onChange={clearValidity}
+            required
+          />
+          <label htmlFor="subscribe-consent-ads" className={styles.consentLabel}>
             Я согласен(а) на{" "}
             <a
               href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
               target="_blank"
               rel="noopener noreferrer"
             >
-            получение рекламной рассылки
+              получение рекламной рассылки
             </a>
           </label>
         </div>
@@ -114,7 +137,6 @@ export function SubscribeSection() {
             </p>
           ) : null}
         </div>
-
       </form>
     </section>
   );
