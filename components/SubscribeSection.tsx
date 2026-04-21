@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import styles from "./SubscribeSection.module.css";
+import { ConsentCheckbox } from "./ConsentCheckbox";
 
 export function SubscribeSection() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -68,56 +69,38 @@ export function SubscribeSection() {
           required
         />
       
-        <div className={styles.consentRow}>
-          <input
-            id="subscribe-consent-data"
-            name="consentData"
-            type="checkbox"
-            className={styles.consentCheckbox}
-            title="Пожалуйста, подтвердите согласие на обработку персональных данных"
-            // onInvalid={handleConsentInvalid}
-            // onChange={clearValidity}
-            required
-          />
-          <label htmlFor="subscribe-consent-data" className={styles.consentLabel}>
-            <div>
-            Я согласен(а) на{" "}
-            <a
-              href="https://disk.yandex.ru/i/ASuW8x_Z5FDLrw"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(event) => event.stopPropagation()}
-            >
-              обработку персональных данных
-            </a>
-            </div>
-          </label>
-        </div>
+        <ConsentCheckbox
+          id="subscribe-consent-data"
+          name="consentData"
+          title="Пожалуйста, подтвердите согласие на обработку персональных данных"
+          required
+        >
+          Я согласен(а) на{" "}
+          <a
+            href="https://disk.yandex.ru/i/ASuW8x_Z5FDLrw"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(event) => event.stopPropagation()}
+          >
+            обработку персональных данных
+          </a>
+        </ConsentCheckbox>
 
-        <div className={styles.consentRow}>
-          <input
-            id="subscribe-consent-ads"
-            name="consentAds"
-            type="checkbox"
-            className={styles.consentCheckbox}
-            title="Пожалуйста, подтвердите согласие на получение рекламной рассылки"
-            // onInvalid={handleConsentInvalid}
-            // onChange={clearValidity}
-          />
-          <label htmlFor="subscribe-consent-ads" className={styles.consentLabel}>
-            <div>
-            Я согласен(а) на{" "}
-            <a
-              href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(event) => event.stopPropagation()}
-            >
-              получение рекламной рассылки
-            </a>
-            </div>
-          </label>
-        </div>
+        <ConsentCheckbox
+          id="subscribe-consent-ads"
+          name="consentAds"
+          title="Пожалуйста, подтвердите согласие на получение рекламной рассылки"
+        >
+          Я согласен(а) на{" "}
+          <a
+            href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(event) => event.stopPropagation()}
+          >
+            получение рекламной рассылки
+          </a>
+        </ConsentCheckbox>
 
         <button
           type="submit"

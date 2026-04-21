@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./FormSection.module.css";
+import { ConsentCheckbox } from "./ConsentCheckbox";
 
 export function FormSection() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -262,57 +263,42 @@ export function FormSection() {
         </div>
 
         <div className={styles.consentGroup}>
-          <div className={styles.consentRow}>
-            <input
-              id="lead-consent-data"
-              name="consentData"
-              type="checkbox"
-              className={styles.consentCheckbox}
-              title="Пожалуйста, подтвердите согласие на обработку персональных данных"
-              onInvalid={handleConsentInvalid}
-              onChange={clearValidity}
-              required
-            />
-            <label htmlFor="lead-consent-data" className={styles.consentLabel}>
-              <div>
-              Я согласен(а) на{" "}
-              <a
-                href="https://disk.yandex.ru/i/ASuW8x_Z5FDLrw"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(event) => event.stopPropagation()}
-              >
-                обработку персональных данных
-              </a>
-              </div>
-            </label>
-          </div>
-          <div className={styles.consentRow}>
-            <input
-              id="lead-consent-ads"
-              name="consentAds"
-              type="checkbox"
-              className={styles.consentCheckbox}
-              title="Пожалуйста, подтвердите согласие на получение рекламной рассылки"
-              onInvalid={handleConsentInvalid}
-              onChange={clearValidity}
-            />
-            <label htmlFor="lead-consent-ads" className={styles.consentLabel}>
-              <div>
-              Я согласен(а) на{" "}
-              <a
-                href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(event) => event.stopPropagation()}
-              >
-                получение рекламной рассылки
-              </a>
-              </div>
-            </label>
-          </div>
+          <ConsentCheckbox
+            id="lead-consent-data"
+            name="consentData"
+            title="Пожалуйста, подтвердите согласие на обработку персональных данных"
+            onInvalid={handleConsentInvalid}
+            onChange={clearValidity}
+            required
+          >
+            Я согласен(а) на{" "}
+            <a
+              href="https://disk.yandex.ru/i/ASuW8x_Z5FDLrw"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => event.stopPropagation()}
+            >
+              обработку персональных данных
+            </a>
+          </ConsentCheckbox>
 
-
+          <ConsentCheckbox
+            id="lead-consent-ads"
+            name="consentAds"
+            title="Пожалуйста, подтвердите согласие на получение рекламной рассылки"
+            onInvalid={handleConsentInvalid}
+            onChange={clearValidity}
+          >
+            Я согласен(а) на{" "}
+            <a
+              href="https://disk.yandex.ru/i/Cf9Huz2bIyPUqg"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => event.stopPropagation()}
+            >
+              получение рекламной рассылки
+            </a>
+          </ConsentCheckbox>
         </div>
       </form>
 
