@@ -403,7 +403,7 @@ export default function HomePage() {
         <br />
 
         <img
-          src="/images/серферы 1.png"
+          src="/images/серферы 1_lq.jpg"
           alt="Серферы"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
@@ -429,7 +429,7 @@ export default function HomePage() {
         <br />
         <br />
         <img
-          src="/images/rm-ballet-1 1.png"
+          src="/images/rm-ballet-1 1_lq.jpg"
           alt="Балет"
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />

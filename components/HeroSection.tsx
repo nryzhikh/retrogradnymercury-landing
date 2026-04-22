@@ -6,7 +6,7 @@ export function HeroSection() {
   return (
     <section className={styles.hero}>
         <Image
-          src="/images/biarriz-1-3 1.png"
+          src="/images/biarriz-1-3 1_low.jpg"
           alt="Биарриц"
           fill
           priority

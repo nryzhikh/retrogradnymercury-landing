@@ -82,12 +82,12 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_json" }, { status: 400 });
   }
 
-  const name = asString(body.name, 200);
-  const email = asString(body.email, 200);
+  const name = asString(body.name, 300);
+  const email = asString(body.email, 300);
   const phone = asString(body.phone, 40);
   const about = asString(body.about, 2000);
   const consentData = asBool(body.consentData);
-  const consentAds = asBool(body.consentAds);
+  const consentAds = asBool(body.consentAds || false);
 
   if (!name || !email || !phone || !about || !consentData) {
     return NextResponse.json({ error: "missing_fields" }, { status: 400 });
