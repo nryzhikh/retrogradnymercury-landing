@@ -302,7 +302,7 @@ export function FormSection() {
           </ConsentCheckbox>
 
           <ConsentCheckbox
-            id="lead-consent-ads"
+            id="lead-consent-offer"
             name="consentOffer"
             title="Пожалуйста, подтвердите согласие с условиями оферты"
             onInvalid={handleConsentInvalid}
