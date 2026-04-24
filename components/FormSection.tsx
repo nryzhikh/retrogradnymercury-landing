@@ -38,6 +38,7 @@ export function FormSection() {
       about: fd.get("about"),
       consentData: fd.get("consentData") === "on",
       consentAds: fd.get("consentAds") === "on",
+      consentOffer: fd.get("consentOffer") === "on",
     };
 
     setSubmitError(null);
@@ -297,6 +298,24 @@ export function FormSection() {
               onClick={(event) => event.stopPropagation()}
             >
               получение рекламной рассылки
+            </a>
+          </ConsentCheckbox>
+
+          <ConsentCheckbox
+            id="lead-consent-ads"
+            name="consentOffer"
+            title="Пожалуйста, подтвердите согласие с условиями оферты"
+            onInvalid={handleConsentInvalid}
+            onChange={clearValidity}
+          >
+            Я согласен(а) с{" "}
+            <a
+              href="https://disk.yandex.ru/i/pJMEw_urKjebbA"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(event) => event.stopPropagation()}
+            >
+              условия оферты
             </a>
           </ConsentCheckbox>
         </div>
