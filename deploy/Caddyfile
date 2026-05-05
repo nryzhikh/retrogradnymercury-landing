@@ -1,16 +1,8 @@
-{
-	email {$ACME_EMAIL}
-	servers {
-		trusted_proxies static private_ranges
-	}
-}
 
-{$SITE_DOMAIN} {
+
+events.retrogradnymercury.com {
 	encode zstd gzip
-
-	@static {
-		path /_next/static/* /favicon.ico /favicon.svg /apple-touch-icon.png /favicon-96x96.png /manifest.json /site.webmanifest /fonts/* /images/*
-	}
+	
 	header @static Cache-Control "public, max-age=31536000, immutable"
 
 	header {

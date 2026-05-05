@@ -2,12 +2,9 @@ name: mercury
 
 services:
   web:
-    image: ${IMAGE:-ghcr.io/OWNER/mercury:latest}
+    image: ghcr.io/nryzhikh/retrogradnymercury-landing:latest
     container_name: mercury-web
     restart: unless-stopped
-    env_file:
-      - path: ./.env
-        required: false
     environment:
       NODE_ENV: production
       PORT: "3000"

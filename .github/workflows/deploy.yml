@@ -64,6 +64,21 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync compose + Caddyfile to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          source: "deploy/docker-compose.yml,deploy/Caddyfile"
+          target: /opt/mercury
+          strip_components: 1
+          overwrite: true
+
       - name: Deploy over SSH
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -72,12 +87,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT || 22 }}
           script_stop: true
-          envs: IMAGE_REF
           script: |
             set -euo pipefail
             cd /opt/mercury
-            export IMAGE="${{ needs.build.outputs.image }}"
-            grep -q '^IMAGE=' .env && sed -i "s|^IMAGE=.*|IMAGE=${IMAGE}|" .env || echo "IMAGE=${IMAGE}" >> .env
             docker compose pull
             docker compose up -d --remove-orphans
             docker image prune -f

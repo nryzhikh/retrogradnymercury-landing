@@ -10,12 +10,15 @@ Registry (GHCR); the VPS pulls and restarts on every push to `main`.
 - [`.dockerignore`](../.dockerignore) — keeps build context small.
 - [`docker-compose.yml`](./docker-compose.yml) — `web` (Next) + `caddy` services.
 - [`Caddyfile`](./Caddyfile) — TLS, gzip/zstd, security headers, static caching.
-- [`.env.example`](./.env.example) — template for the production `.env` on the VPS.
 - [`bootstrap.sh`](./bootstrap.sh) — single local script: SSHes into the VPS as
   root (key-only) and applies the full hardening + Docker install.
 - [`.env.bootstrap.example`](./.env.bootstrap.example) — template for the local
   secrets file consumed by `bootstrap.sh`.
 - [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) — CI/CD.
+
+> Config values (image ref, site domain, ACME email, Node defaults) are
+> hardcoded directly in `docker-compose.yml` and `Caddyfile`. There is no `.env`
+> file on the VPS — CI scp's the two files into `/opt/mercury/` on every deploy.
 
 ## One-time VPS bootstrap
 
@@ -97,71 +100,74 @@ In a single SSH session as root:
 - only **then** locks the root password (the original root SSH session stays
   alive; if any verification fails, root is left unlocked so you can recover)
 
-### 5. Project layout on the VPS
+### 5. Set the real domain and email
+
+The hardcoded placeholder is `mercury.example.com` (2 places in
+[Caddyfile](./Caddyfile), 0 places in [docker-compose.yml](./docker-compose.yml))
+and `admin@example.com` (1 place in [Caddyfile](./Caddyfile)). Replace them
+before the first deploy:
 
 ```bash
-sudo mkdir -p /opt/mercury && sudo chown deploy:deploy /opt/mercury
-cd /opt/mercury
-# copy these from the repo's deploy/ folder (scp or git clone):
-#   docker-compose.yml
-#   Caddyfile
-#   .env   (start from .env.example, fill in values)
+sed -i '' 's/mercury\.example\.com/your-domain.tld/g' deploy/Caddyfile
+sed -i '' 's/admin@example\.com/you@your-domain.tld/g' deploy/Caddyfile
 ```
 
-Edit `.env` and set:
+(`sed -i ''` for macOS; on Linux drop the `''`.)
 
-```
-SITE_DOMAIN=mercury.example.com
-ACME_EMAIL=admin@example.com
-IMAGE=ghcr.io/OWNER/mercury:latest
-```
+The image reference in [docker-compose.yml](./docker-compose.yml) is already
+correct: `ghcr.io/nryzhikh/retrogradnymercury-landing:latest`.
 
-### 6. GHCR auth on the VPS
+### 6. Make the GHCR package public (one-time, after first CI push)
 
-GHCR packages default to private. Create a classic PAT (or fine-grained token) with
-`read:packages` scope on your GitHub account, then on the VPS:
+CI pushes the image privately by default, so the VPS would need a PAT to pull.
+Easiest path for a public-facing landing page is to flip the package to public:
 
-```bash
-echo "$GHCR_READ_PAT" | docker login ghcr.io -u <github-user> --password-stdin
-```
+1. After the first successful CI run, open
+   `https://github.com/nryzhikh/retrogradnymercury-landing/pkgs/container/retrogradnymercury-landing`.
+2. Package settings → **Change package visibility** → **Public** → confirm.
 
-This persists credentials in `~/.docker/config.json` so `docker compose pull` works.
+The image contains only what Caddy serves to the world anyway (compiled HTML/JS/CSS
++ the Next.js server), so making it public is informationally neutral.
 
-### 7. GitHub repo secrets and environment
+### 7. GitHub repo secrets
 
 In `Settings -> Environments -> production`, add:
 
-| Secret      | Value                                                  |
-|-------------|--------------------------------------------------------|
-| `SSH_HOST`  | VPS IP or hostname                                     |
-| `SSH_USER`  | `deploy`                                               |
-| `SSH_KEY`   | contents of `~/.ssh/mercury_deploy` (private key)      |
-| `SSH_PORT`  | optional, defaults to 22                               |
+| Secret      | Value                                             |
+|-------------|---------------------------------------------------|
+| `SSH_HOST`  | VPS IP or hostname                                |
+| `SSH_USER`  | `deploy`                                          |
+| `SSH_KEY`   | contents of `~/.ssh/mercury_retreat` (private)    |
+| `SSH_PORT`  | optional, defaults to 22                          |
 
-The workflow uses the built-in `GITHUB_TOKEN` to push to GHCR — no PAT needed for CI.
+The workflow uses the built-in `GITHUB_TOKEN` to push to GHCR — no PAT needed.
 
 ### 8. First deploy
 
+Trigger CI by pushing to `main` (or click "Run workflow" on the deploy action).
+CI will: build the image, push to GHCR, scp `docker-compose.yml` + `Caddyfile`
+to `/opt/mercury/`, then `docker compose pull && up -d`.
+
+Watch the cert issuance on the first hit:
+
 ```bash
-cd /opt/mercury
-docker compose pull
-docker compose up -d
-docker compose ps          # both services should become healthy
-docker compose logs -f caddy   # watch ACME issue the cert on first request
+ssh -i ~/.ssh/mercury_retreat deploy@<vps-ip>
+docker compose -f /opt/mercury/docker-compose.yml logs -f caddy
 ```
 
-Hit `https://mercury.example.com/` in a browser; Caddy will fetch a Let's Encrypt
-certificate on the first hit.
+Hit `https://your-domain.tld/` in a browser; Caddy fetches a Let's Encrypt cert
+on the first request.
 
 ## Day-to-day
 
-- **Deploy**: push to `main`. CI builds, pushes `ghcr.io/OWNER/mercury:sha-<short>` and
-  `:latest`, then SSHes in and runs `docker compose pull && docker compose up -d`.
-- **Rollback**: `IMAGE=ghcr.io/OWNER/mercury:sha-<known-good> docker compose up -d`.
-  The deploy workflow rewrites `IMAGE` in `/opt/mercury/.env` on every run, so to pin
-  manually edit that line and run `docker compose up -d`.
-- **Logs**: `docker compose logs -f web` / `docker compose logs -f caddy`.
-- **Update Caddy/Compose config**: edit on VPS and `docker compose up -d` (Caddy reloads).
+- **Deploy app code**: `git push` — CI rebuilds, repushes, redeploys.
+- **Tweak Caddy or compose**: edit `deploy/Caddyfile` or `deploy/docker-compose.yml`,
+  `git push`. CI scp's the files and re-applies. No ssh needed.
+- **Rollback**: edit `image:` in [docker-compose.yml](./docker-compose.yml) to a
+  specific `sha-<short>` tag (CI tags both `:latest` and `:sha-<short>` on every
+  build), `git push`. To roll back without a commit:
+  `ssh deploy@vps && cd /opt/mercury && sed -i 's|:latest|:sha-abcdef|' docker-compose.yml && docker compose up -d`.
+- **Logs**: `docker compose -f /opt/mercury/docker-compose.yml logs -f web|caddy`.
 - **Disk**: `docker image prune -f` runs automatically after each deploy.
 
 ## Sanity checks after deploy
