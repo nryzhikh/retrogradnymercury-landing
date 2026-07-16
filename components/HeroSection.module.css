@@ -99,14 +99,15 @@
   /* Move this up/down to align the CTA to the image. */
   top: 55%;
   /* Adjust width to scale the CTA against the artwork. */
-  width: clamp(250px, 62vw, 700px);
+  width: clamp(250px, 42vw, 600px);
+
   /* width: min(72vw, clamp(700px, 28vw, 520px)); */
   transform: translate(-50%, -50%);
   z-index: 3;
 }
 
 .heroCtaImage {
-  width: clamp(250px, 62vw, 700px);
+  width: 100%;
 
   height: auto;
 }
