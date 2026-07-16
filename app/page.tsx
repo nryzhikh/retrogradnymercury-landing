@@ -8,35 +8,35 @@ import { PhotoSection, Tile } from "@/components/PhotoSection";
 import { SubscribeSection } from "@/components/SubscribeSection";
 import Image from "next/image";
 const photosSet0: Tile[] = [
-  { src: "/images/tashkent/image 23.jpg", alt: "image 23", col: 2, row: 2 },
-  { src: "/images/tashkent/image 24.jpg", alt: "image 24", col: 4, row: 2 },
-  { src: "/images/tashkent/image 25.jpg", alt: "image 25", col: 2, row: 2 },
-  { src: "/images/tashkent/image 26.jpg", alt: "image 26", col: 2, row: 4 },
-  { src: "/images/tashkent/image 27.jpg", alt: "image 27", col: 4, row: 4 },
-  { src: "/images/tashkent/image 28.jpg", alt: "image 28", col: 2, row: 4 },
+  { src: "/images/tashkent/image 23.webp", alt: "image 23", col: 2, row: 2 },
+  { src: "/images/tashkent/image 24.webp", alt: "image 24", col: 4, row: 2 },
+  { src: "/images/tashkent/image 25.webp", alt: "image 25", col: 2, row: 2 },
+  { src: "/images/tashkent/image 26.webp", alt: "image 26", col: 2, row: 4 },
+  { src: "/images/tashkent/image 27.webp", alt: "image 27", col: 4, row: 4 },
+  { src: "/images/tashkent/image 28.webp", alt: "image 28", col: 2, row: 4 },
 ];
 
 const photosSet1: Tile[] = [
-  { src: "/images/tashkent/е3 1.jpg", alt: "e3 1", col: 2, row: 3 },
-  { src: "/images/tashkent/new1 1.jpg", alt: "new1 1", col: 2, row: 3 },
-  { src: "/images/tashkent/new2 1.jpg", alt: "new2 1", col: 2, row: 3 },
-  { src: "/images/tashkent/new3 1.jpg", alt: "new3 1", col: 2, row: 3 },
+  { src: "/images/tashkent/е3 1.webp", alt: "e3 1", col: 2, row: 3 },
+  { src: "/images/tashkent/new1 1.webp", alt: "new1 1", col: 2, row: 3 },
+  { src: "/images/tashkent/new2 1.webp", alt: "new2 1", col: 2, row: 3 },
+  { src: "/images/tashkent/new3 1.webp", alt: "new3 1", col: 2, row: 3 },
 ];
 const photosSet2: Tile[] = [
-  { src: "/images/tashkent/new4 1.jpg", alt: "new4 1", col: 4, row: 4 },
-  { src: "/images/tashkent/new5 1.jpg", alt: "new5 1", col: 4, row: 4 },
+  { src: "/images/tashkent/new4 1.webp", alt: "new4 1", col: 4, row: 4 },
+  { src: "/images/tashkent/new5 1.webp", alt: "new5 1", col: 4, row: 4 },
 ];
 
 const photosSetRounded1: Tile[] = [
-  { src: "/images/tashkent/image 32.jpg", alt: "image 32", col: 4, row: 4, rounded: true },
-  { src: "/images/tashkent/image 34.jpg", alt: "image 34", col: 4, row: 4, rounded: true },
-  { src: "/images/tashkent/image 35.jpg", alt: "image 35", col: 4, row: 4, rounded: true },
-  { src: "/images/tashkent/image 33.jpg", alt: "image 33", col: 4, row: 4, rounded: true },
+  { src: "/images/tashkent/image 32.webp", alt: "image 32", col: 4, row: 4, rounded: true },
+  { src: "/images/tashkent/image 34.webp", alt: "image 34", col: 4, row: 4, rounded: true },
+  { src: "/images/tashkent/image 35.webp", alt: "image 35", col: 4, row: 4, rounded: true },
+  { src: "/images/tashkent/image 33.webp", alt: "image 33", col: 4, row: 4, rounded: true },
 ];
 
 const photosSetRounded2: Tile[] = [
-  { src: "/images/tashkent/image 29.jpg", alt: "image 24", col: 4, row: 4, rounded: true },
-  { src: "/images/tashkent/image 30.jpg", alt: "image 25", col: 4, row: 4, rounded: true },
+  { src: "/images/tashkent/image 29.webp", alt: "image 24", col: 4, row: 4, rounded: true },
+  { src: "/images/tashkent/image 30.webp", alt: "image 25", col: 4, row: 4, rounded: true },
 
 ];
 
@@ -169,7 +169,7 @@ export default function HomePage() {
           официально признали недееспособным — и тоже из-за страсти.
         </p>
         <Image
-          src="/images/tashkent/golden-frame 1.png"
+          src="/images/tashkent/golden-frame 1.webp"
           alt="Золотая рамка"
           width={800}
           height={800}
@@ -229,7 +229,7 @@ export default function HomePage() {
         </p>
         <br />
         <Image
-          src="/images/tashkent/image 37.jpg"
+          src="/images/tashkent/image 37.webp"
           alt="image 37"
           width={800}
           height={800}
@@ -241,7 +241,7 @@ export default function HomePage() {
       <PhotoSection tiles={photosSet2} />
       <CopySection>
         <Image
-          src="/images/tashkent/храм 1.jpg"
+          src="/images/tashkent/храм 1.webp"
           alt="image 37"
           width={800}
           height={800}
@@ -261,7 +261,7 @@ export default function HomePage() {
           Ташкент.
         </p>
         <Image
-          src="/images/tashkent/площадь 1.jpg"
+          src="/images/tashkent/площадь 1.webp"
           alt="image 37"
           width={800}
           height={800}
@@ -270,7 +270,7 @@ export default function HomePage() {
         <br />
         <br />
         <Image
-          src="/images/tashkent/new6 1.jpg"
+          src="/images/tashkent/new6 1.webp"
           alt="image 37"
           width={800}
           height={800}

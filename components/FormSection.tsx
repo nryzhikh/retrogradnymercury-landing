@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import styles from "./FormSection.module.css";
 import { ConsentCheckbox } from "./ConsentCheckbox";
+import Image from "next/image";
 
 export function FormSection() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -247,11 +248,13 @@ export function FormSection() {
                 disabled={isSubmitting}
                 aria-label="Хочу с вами"
               >
-                <img
+                <Image
                   src="/images/tashkent/tashkent-cta-button.png"
                   alt="Хочу с вами"
                   aria-hidden="true"
                   className={styles.ctaImage}
+                  width={800}
+                  height={800}
                 />
               </button>
               {submitError ? (

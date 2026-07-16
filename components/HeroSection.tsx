@@ -6,7 +6,7 @@ export function HeroSection() {
   return (
     <section className={styles.hero}>
         <Image
-          src="/images/tashkent/tashkent-hero-bg-low.jpg"
+          src="/images/tashkent/tashkent-hero-bg-low.webp"
           alt="Ташкент"
           fill
           priority
