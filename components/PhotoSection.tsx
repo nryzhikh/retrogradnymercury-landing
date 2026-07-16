@@ -6,8 +6,8 @@ type Span = 1 | 2 | 4 | 8 | 16;
 export type Tile = {
   src: string;
   alt: string;
-  col: Extract<Span, 1 | 2 | 4 | 8 | 16>;
-  row: Extract<Span, 2 | 4 | 8 | 16>;
+  col: number;
+  row: number;
   objectPosition?: string;
   hideOnMobile?: boolean;
   priority?: boolean;
