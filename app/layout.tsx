@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/images/retreat.jpg"],
+    images: ["/images/tashkent/opengraph.jpg"],
   },
 };
 
