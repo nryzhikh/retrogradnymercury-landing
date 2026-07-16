@@ -9,7 +9,7 @@ import { SubscribeSection } from "@/components/SubscribeSection";
 import Image from "next/image";
 const photosSet0: Tile[] = [
   { src: "/images/tashkent/image 23.webp", alt: "image 23", col: 2, row: 2 },
-  { src: "/images/tashkent/image 24.webp", alt: "image 24", col: 4, row: 2 },
+  { src: "/images/tashkent/image 24.webp", alt: "image 24", col: 4, row: 2, objectPosition :"center 100%" },
   { src: "/images/tashkent/image 25.webp", alt: "image 25", col: 2, row: 2 },
   { src: "/images/tashkent/image 26.webp", alt: "image 26", col: 2, row: 4 },
   { src: "/images/tashkent/image 27.webp", alt: "image 27", col: 4, row: 4 },
