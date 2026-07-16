@@ -11,6 +11,7 @@ export type Tile = {
   objectPosition?: string;
   hideOnMobile?: boolean;
   priority?: boolean;
+  rounded?: boolean;
 };
 
 function PhotoTile({
@@ -21,6 +22,7 @@ function PhotoTile({
   objectPosition = "center 52%",
   hideOnMobile = false,
   priority = false,
+  rounded = false,
 }: Tile) {
   const sizes = `(min-width: 900px) ${(col / 8) * 100}vw, ${(col / 4) * 100}vw`;
 
@@ -34,7 +36,7 @@ function PhotoTile({
         ["--row" as string]: row,
       }}
     >
-      <div className={styles.media}>
+      <div className={`${styles.media} ${rounded ? styles.rounded : ""}`}>
         <Image
           src={src}
           alt={alt}
@@ -49,10 +51,19 @@ function PhotoTile({
   );
 }
 
-export function PhotoSection({ tiles }: { tiles: Tile[] }) {
+export function PhotoSection({
+  tiles,
+  gap = 0,
+}: {
+  tiles: Tile[];
+  /** Grid gap — number (px) or any CSS gap value, e.g. `"12px"` / `"8px 16px"` */
+  gap?: number | string;
+}) {
+  const gapValue = typeof gap === "number" ? `${gap}px` : gap;
+
   return (
     <section className={styles.section}>
-      <div className={styles.grid}>
+      <div className={styles.grid} style={{ gap: gapValue }}>
         {tiles.map((tile) => (
           <PhotoTile key={tile.src} {...tile} />
         ))}

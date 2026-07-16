@@ -248,7 +248,7 @@ export function FormSection() {
                 aria-label="Хочу с вами"
               >
                 <img
-                  src="/images/ХОЧУ-С-ВАМИ 1.png"
+                  src="/images/tashkent/tashkent-cta-button.png"
                   alt="Хочу с вами"
                   aria-hidden="true"
                   className={styles.ctaImage}
