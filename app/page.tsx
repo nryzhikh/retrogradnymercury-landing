@@ -27,6 +27,11 @@ const photosSet2: Tile[] = [
   { src: "/images/tashkent/new5 1.webp", alt: "new5 1", col: 4, row: 4 },
 ];
 
+const photosSet3: Tile[] = [
+  { src: "/images/tashkent/new9 1.webp", alt: "new4 1", col: 4, row: 4 },
+  { src: "/images/tashkent/new10 1.webp", alt: "new5 1", col: 4, row: 4 },
+];
+
 const photosSetRounded1: Tile[] = [
   {
     src: "/images/tashkent/image 32.webp",
@@ -313,13 +318,11 @@ export default function HomePage() {
           ответить на самый важный вопрос. Вечером нас ждут чайная церемония,
           ритуал и совместный ужин, после чего мы возвращаемся в Ташкент.
         </p>
-        <PhotoSection tiles={photosSet2} />
+        <PhotoSection tiles={photosSet3} />
         <br />
         <br />
         <span>11 октября</span>
-        <ul>
-          <li>Выезд (свободное время перед рейсами).</li>
-        </ul>
+        <p>Выезд (свободное время перед рейсами).</p>
         <h2 className={styles.sectionTitle}>
           <LayeredTitle front="Что входит в стоимость" />
           {/* <p style={{ fontSize: "22px", fontWeight: 400, lineHeight: 1.2 }}>За человека</p> */}

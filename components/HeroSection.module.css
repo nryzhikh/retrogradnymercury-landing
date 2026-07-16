@@ -106,7 +106,8 @@
 }
 
 .heroCtaImage {
-  width: 100%;
+  width: clamp(250px, 62vw, 700px);
+
   height: auto;
 }
 
