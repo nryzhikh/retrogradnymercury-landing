@@ -38,7 +38,7 @@
   /* Main manual handle for the lower text block. */
   left: 50%;
   /* Move this up/down to align the headline block to the image. */
-  top: 25.5%;
+  top: 40%;
   /* Adjust width to control line breaks against the artwork. */
   /* width: min(84vw, clamp(400px, 34vw, 560px)); */
   width: min(84vw, clamp(400px, 34vw, 560px));
@@ -97,9 +97,9 @@
   /* Main manual handle for the CTA image. */
   left: 50%;
   /* Move this up/down to align the CTA to the image. */
-  top: 65%;
+  top: 55%;
   /* Adjust width to scale the CTA against the artwork. */
-  width: clamp(300px, 72vw, 800px);
+  width: clamp(250px, 62vw, 700px);
   /* width: min(72vw, clamp(700px, 28vw, 520px)); */
   transform: translate(-50%, -50%);
   z-index: 3;

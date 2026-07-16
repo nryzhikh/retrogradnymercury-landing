@@ -7,10 +7,10 @@ import { Suspense } from "react";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://events.retrogradnymercury.com";
+  "https://tashkent.retrogradnymercury.com";
 
-const title = "Ретроградный ретрит";
-const description = "18 — 21 июня 2026 · Меркурий в Биаррице";
+const title = "Ретроградный меркурий";
+const description = "7 — 11 октября 2026 · Меркурий в Ташкенте";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -34,10 +34,10 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/images/retreat.jpg",
+        url: "/images/tashkent/opengraph.jpg",
         width: 1921,
         height: 1274,
-        alt: "Ретроградный ритрит · Меркурий в Биаррице · 18–21 июня 2026",
+        alt: "Ретроградный меркурий · Меркурий в Ташкенте · 7–11 октября 2026",
         type: "image/jpeg",
       },
     ],

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const YANDEX_SURVEY_ID = "69e61b8395add50b882ab1b4";
+const YANDEX_SURVEY_ID = "6a58d761eb6146112d68c11a";
 const YANDEX_ENDPOINT = `https://api.forms.yandex.net/v1/surveys/${YANDEX_SURVEY_ID}/form`;
 
 const FIELD = {
