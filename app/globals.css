@@ -57,29 +57,31 @@ html {
   scroll-behavior: smooth;
   background-color: #312944;
   background-image:
-    linear-gradient(
-      180deg,
-      #5676ae 0%,
-      #6caed1 13%,
-      #81b4d0 16%,
-      #b8c5d0 23%,
-      #dad0d0 29%,
-      #e8d4d0 32%,
-      #f9e6ca 52%,
-      #f7dec4 57%,
-      #f3cab5 64%,
-      #eca99c 73%,
-      #eca79b 74%,
-      #dc9d95 77%,
-      #b48388 82%,
-      #745972 90%,
-      #6c5470 91%,
-      #312944 100%
-    );
+  linear-gradient(
+    180deg,
+    #C9D7F0 0%,
+    #B9DBEE 13%,
+    #CFE0E9 16%,
+    #C2CED8 23%,
+    #eca79b 26%,
+    #DAD0D0 29%,
+    #E8D4D0 32%,
+    #F9E6CA 52%,
+    #F7DEC4 57%,
+    #F3CAB5 64%,
+    #ECA99C 73%,
+    #ECA79B 74%,
+    #DC9D95 77%,
+    #B48388 82%,
+    #745972 90%,
+    #6C5470 91%,
+    #312944 100%
+  );
   background-repeat: no-repeat;
   background-position: center top;
   background-size: 100% 100%;
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   html {

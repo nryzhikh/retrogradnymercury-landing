@@ -23,7 +23,7 @@ export function HeroSection() {
           </div>
           <a className={styles.heroCtaLink} href="#hero-scroll-target">
             <Image
-              src="/images/tashkent/tashkent-cta-button.png"
+              src="/images/tashkent/tashkent-cta-button.webp"
               alt="Хочу с вами"
               className={styles.heroCtaImage}
               width={300}
