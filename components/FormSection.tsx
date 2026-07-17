@@ -31,22 +31,11 @@ export function FormSection() {
     event.preventDefault();
     const form = event.currentTarget;
     const fd = new FormData(form);
-    const phoneInput = form.elements.namedItem("phone") as HTMLInputElement;
-    const phoneDigits = String(fd.get("phone") ?? "").replace(/\D/g, "");
-    const phone = phoneDigits ? `+${phoneDigits}` : "";
-
-    if (!/^\+[1-9]\d{6,14}$/.test(phone)) {
-      phoneInput.setCustomValidity(
-        "Введите номер в международном формате, например +37061234567.",
-      );
-      phoneInput.reportValidity();
-      return;
-    }
 
     const payload = {
       name: fd.get("name"),
       email: fd.get("email"),
-      phone,
+      phone: fd.get("phone"),
       about: fd.get("about"),
       consentData: fd.get("consentData") === "on",
       consentAds: fd.get("consentAds") === "on",
@@ -131,11 +120,11 @@ export function FormSection() {
   const phoneMessages: FieldMessages = {
     valueMissing: "Пожалуйста, введите номер телефона.",
     patternMismatch:
-      "Введите номер в международном формате, например +37061234567.",
+      "Введите корректный номер телефона (7–20 символов, можно +, пробелы, скобки и дефис).",
     tooShort:
-      "Введите номер в международном формате, например +37061234567.",
+      "Введите корректный номер телефона (7–20 символов, можно +, пробелы, скобки и дефис).",
     tooLong:
-      "Введите номер в международном формате, например +37061234567.",
+      "Введите корректный номер телефона (7–20 символов, можно +, пробелы, скобки и дефис).",
   };
 
   const aboutMessages: FieldMessages = {
@@ -221,10 +210,10 @@ export function FormSection() {
                 inputMode="tel"
                 autoComplete="tel"
                 placeholder="Телефон"
-                pattern="[+]?[0-9 ()-]*[0-9][0-9 ()-]*"
+                pattern="[+]?[0-9 ()-]{7,20}"
                 minLength={7}
                 maxLength={20}
-                title="Введите номер в международном формате, например +37061234567"
+                title="Введите корректный номер телефона (7-20 символов, можно +, пробелы, скобки и дефис)"
                 className={styles.field}
                 onInvalid={handlePhoneInvalid}
                 onInput={handlePhoneInput}
