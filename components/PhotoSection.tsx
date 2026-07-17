@@ -1,8 +1,7 @@
 import Image from "next/image";
 import styles from "./PhotoSection.module.css";
 
-type Span = 1 | 2 | 4 | 8 | 16;
-
+/** 12-column grid: 3 equal → col 4, 4 equal → col 3, 2 equal → col 6 */
 export type Tile = {
   src: string;
   alt: string;
@@ -24,7 +23,7 @@ function PhotoTile({
   priority = false,
   rounded = false,
 }: Tile) {
-  const sizes = `(min-width: 900px) ${(col / 8) * 100}vw, ${(col / 4) * 100}vw`;
+  const sizes = `${(col / 12) * 100}vw`;
 
   return (
     <div

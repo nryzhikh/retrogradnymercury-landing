@@ -8,64 +8,65 @@ import { PhotoSection, Tile } from "@/components/PhotoSection";
 import { SubscribeSection } from "@/components/SubscribeSection";
 import Image from "next/image";
 const photosSet0: Tile[] = [
-  { src: "/images/tashkent/image 23.webp", alt: "image 23", col: 2, row: 2 },
+  { src: "/images/tashkent/image 23.webp", alt: "image 23", col: 3, row: 3 },
   {
     src: "/images/tashkent/image 24.webp",
     alt: "image 24",
-    col: 4,
-    row: 2,
+    col: 6,
+    row: 3,
     objectPosition: "center 100%",
   },
-  { src: "/images/tashkent/image 25.webp", alt: "image 25", col: 2, row: 2 },
-  { src: "/images/tashkent/image 26.webp", alt: "image 26", col: 2, row: 4 },
-  { src: "/images/tashkent/image 28.webp", alt: "image 28", col: 4, row: 4 },
+  { src: "/images/tashkent/image 25.webp", alt: "image 25", col: 3, row: 3 },
+  { src: "/images/tashkent/image 26.webp", alt: "image 26", col: 3, row: 6 },
+  { src: "/images/tashkent/image 28.webp", alt: "image 28", col: 6, row: 6 },
 
-  { src: "/images/tashkent/image 27.webp", alt: "image 27", col: 2, row: 4 },
+  { src: "/images/tashkent/image 27.webp", alt: "image 27", col: 3, row: 6 },
 ];
 
+/** 4 equal in a row → col: 3 each; 3 equal → col: 4 each */
 const photosSet1: Tile[] = [
-  { src: "/images/tashkent/е3 1.webp", alt: "e3 1", col: 2, row: 3 },
-  { src: "/images/tashkent/new1 1.webp", alt: "new1 1", col: 2, row: 3 },
-  { src: "/images/tashkent/new2 1.webp", alt: "new2 1", col: 2, row: 3 },
-  { src: "/images/tashkent/new3 1.webp", alt: "new3 1", col: 2, row: 3 },
+  { src: "/images/tashkent/е3 1.webp", alt: "e3 1", col: 3, row: 5 },
+  { src: "/images/tashkent/new1 1.webp", alt: "new1 1", col: 3, row: 5 },
+  { src: "/images/tashkent/new2 1.webp", alt: "new2 1", col: 3, row: 5 },
+  { src: "/images/tashkent/new3 1.webp", alt: "new3 1", col: 3, row: 5 },
 ];
 const photosSet2: Tile[] = [
-  { src: "/images/tashkent/new4 1.webp", alt: "new4 1", col: 4, row: 4 },
-  { src: "/images/tashkent/new5 1.webp", alt: "new5 1", col: 4, row: 4 },
+  { src: "/images/tashkent/new4 1.webp", alt: "new4 1", col: 6, row: 6 },
+  { src: "/images/tashkent/new5 1.webp", alt: "new5 1", col: 6, row: 6 },
 ];
 
 const photosSet3: Tile[] = [
-  { src: "/images/tashkent/new9 1.webp", alt: "new4 1", col: 4, row: 6 },
-  { src: "/images/tashkent/new10 1.webp", alt: "new5 1", col: 4, row: 6 },
+  { src: "/images/tashkent/new9 1.webp", alt: "new4 1", col: 6, row: 9 },
+  { src: "/images/tashkent/new10 1.webp", alt: "new5 1", col: 6, row: 9 },
 ];
 
 const photosSetRounded1: Tile[] = [
   {
     src: "/images/tashkent/image 32.webp",
     alt: "image 32",
-    col: 4,
-    row: 4,
+    col: 6,
+    row: 6,
     rounded: true,
   },
   {
     src: "/images/tashkent/image 34.webp",
     alt: "image 34",
-    col: 4,
-    row: 4,
+    col: 6,
+    row: 6,
     rounded: true,
   },
   {
     src: "/images/tashkent/image 35.webp",
     alt: "image 35",
-    col: 4,
-    row: 4,
+    col: 6,
+    row: 6,
     rounded: true,
   },
   {
     src: "/images/tashkent/image 33.webp",
     alt: "image 33",
-    col: 4,
-    row: 4,
+    col: 6,
+    row: 6,
     rounded: true,
   },
 ];
@@ -74,15 +75,15 @@ const photosSetRounded2: Tile[] = [
   {
     src: "/images/tashkent/image 29.webp",
     alt: "image 24",
-    col: 4,
-    row: 4,
+    col: 6,
+    row: 6,
     rounded: true,
   },
   {
     src: "/images/tashkent/image 30.webp",
     alt: "image 25",
-    col: 4,
-    row: 4,
+    col: 6,
+    row: 6,
     rounded: true,
   },
 ];
