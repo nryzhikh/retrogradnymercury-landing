@@ -30,6 +30,13 @@ const asString = (value: unknown, max = 500): string => {
 
 const asBool = (value: unknown): boolean => value === true || value === "on" || value === "true";
 
+const asPhone = (value: unknown): string => {
+  if (typeof value !== "string") return "";
+  const digits = value.replace(/\D/g, "");
+  const phone = digits ? `+${digits}` : "";
+  return /^\+[1-9]\d{6,14}$/.test(phone) ? phone : "";
+};
+
 const MAX_ATTEMPTS = 3;
 const BASE_DELAY_MS = 300;
 const REQUEST_TIMEOUT_MS = 8000;
@@ -86,13 +93,16 @@ export async function POST(request: Request) {
 
   const name = asString(body.name, 300);
   const email = asString(body.email, 300);
-  const phone = asString(body.phone, 40);
+  const phone = asPhone(body.phone);
   const about = asString(body.about, 2000);
   const consentData = asBool(body.consentData);
   const consentAds = asBool(body.consentAds || false);
   const consentOffer = asBool(body.consentOffer || false);
-  if (!name || !email || !phone || !about || !consentData) {
+  if (!name || !email || !about || !consentData) {
     return NextResponse.json({ error: "missing_fields" }, { status: 400 });
+  }
+  if (!phone) {
+    return NextResponse.json({ error: "invalid_phone" }, { status: 400 });
   }
 
   const yandexPayload = {
